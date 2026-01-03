@@ -1,240 +1,372 @@
-/* =========================================
-   Design Tokens & Variables
-   ========================================= */
-:root {
-    /* Color Palette - Premium & Modern */
-    --primary-hue: 250;
-    /* Deep Violet/Indigo */
-    --primary: hsl(var(--primary-hue), 80%, 60%);
-    --primary-hover: hsl(var(--primary-hue), 85%, 50%);
-    --primary-light: hsl(var(--primary-hue), 90%, 96%);
+@import url(//fonts.googleapis.com/css?family=Muli);
 
-    --accent: hsl(330, 80%, 60%);
-    /* Vibrant Pink */
-
-    --bg-body: #f8f9fc;
-    --bg-card: #ffffff;
-    --text-main: #1a1c23;
-    --text-muted: #64748b;
-    --border-color: #e2e8f0;
-
-    /* Spacing & Layout */
-    --container-width: 1200px;
-    --header-height: 70px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-
-    /* Typography */
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-
-    /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+body {
+    margin: 0;
+    padding: 0;
+    font-family: helvetica, sans-serif;
 }
 
-/* Dark Mode Support (if needed later, foundations are here) 
-   @media (prefers-color-scheme: dark) { ... }
-*/
+p {
+    line-height: 1.8;
+}
 
-/* =========================================
-   Global Reset & Base Styles
-   ========================================= */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+a {
+    color: #12c064;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #00a74f;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Muli', sans-serif;
+    font-weight: normal;
+}
+
+h1 {
+    border-bottom: 1px solid #bbb;
+    padding: 0 0 10px 0;
+    margin: 10px 0 20px 0;
+}
+
+h2 {
+    margin: 30px 0 20px;
+}
+
+ol {
+    line-height: 1.5;
+}
+
+#header {
+    padding: 10px 100px;
+    font-size: 14px;
+    background: #12c064;
+    color: #fff;
+    border-bottom: 4px solid #1cdf78;
+    overflow: auto;
+}
+
+#header .logo {
+    font-family: 'Muli', sans-serif;
+    float: left;
+    color: #f3f7cc;
+    font-size: 20px;
+    margin-right: 10%;
+}
+
+#header ul.menu {
+    list-style: none;
+    float: left;
     margin: 0;
     padding: 0;
 }
 
-body {
-    font-family: var(--font-sans);
-    background-color: var(--bg-body);
-    color: var(--text-main);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+#header ul.menu li {
+    float: left;
+    padding: 4px 10px;
 }
 
-a {
-    color: var(--primary);
-    text-decoration: none;
-    transition: color 0.2s ease;
+#header ul.menu li.selected a,
+#header ul.menu li.selected a:hover {
+    color: #1b6d32;
+    font-weight: bold;
 }
 
-a:hover {
-    color: var(--primary-hover);
+#header a {
+    color: #f3f7cc;
 }
 
-ul {
-    list-style: none;
+#header a:hover {
+    color: #fff;
 }
 
-/* =========================================
-   Layout Components
-   ========================================= */
-
-/* Header */
-#header {
-    background-color: var(--bg-card);
-    height: var(--header-height);
-    border-bottom: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+#header .user {
+    float: right;
+    padding-top: 4px;
 }
 
-#header .logo {
-    font-family: 'Outfit', var(--font-sans);
-    /* Ensure you load this or fallback */
-    font-weight: 700;
-    font-size: 1.5rem;
-    color: var(--text-main);
-    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px;
+#header .user form {
+    display: inline;
+    float: right;
 }
 
-/* Main Content Area */
+#header .user button {
+    background: none;
+    color: #f3f7cc;
+    border: none;
+    cursor: pointer;
+    float: left;
+    display: inline;
+}
+
 #content {
-    flex: 1;
-    width: 100%;
-    max-width: var(--container-width);
-    margin: 2rem auto;
-    padding: 0 1.5rem;
+    padding: 30px 100px;
 }
 
-/* =========================================
-   UI Components
-   ========================================= */
-
-/* Cards (for logic, profiles, etc) */
-.card,
+/* forms */
 form {
-    background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-    padding: 2.5rem;
-    margin: 0 auto;
-    max-width: 500px;
-    /* Default for login forms */
-    border: 1px solid var(--border-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: auto;
 }
 
-.card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-2px);
-}
-
-/* Headings */
-h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    color: var(--text-main);
-    text-align: center;
-}
-
-/* Forms */
-.form-group,
-p {
-    margin-bottom: 1.25rem;
+form p {
+    width: 100%;
+    overflow: auto;
 }
 
 label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: var(--text-muted);
-    font-size: 0.9rem;
+    float: left;
+    clear: both;
+    color: #333;
+    margin-bottom: 4px;
 }
 
-/* Inputs */
-input[type="text"],
-input[type="password"],
-input[type="email"],
+input,
 textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: var(--bg-body);
-    border: 2px solid transparent;
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    color: var(--text-main);
-    transition: all 0.2s ease;
+    clear: both;
+    float: left;
+    margin: 0 0 10px;
+    background: #efefef;
+    border: 0;
+    padding: 6px 10px;
+    font-size: 14px;
 }
 
-input:focus,
-textarea:focus {
-    outline: none;
-    background-color: var(--bg-card);
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px var(--primary-light);
-}
-
-/* Buttons */
-button,
-input[type="submit"] {
-    display: inline-block;
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(135deg, var(--primary) 0%, #6366f1 100%);
-    border: none;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    font-size: 1rem;
-    margin-top: 1rem;
-}
-
-button:hover,
-input[type="submit"]:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    filter: brightness(1.1);
-}
-
-button:active,
-input[type="submit"]:active {
-    transform: translateY(0);
-}
-
-/* Alerts / Messages */
-.messages {
-    list-style: none;
-    margin-bottom: 1.5rem;
+input[type=submit],
+a.button {
+    font-weight: bold;
+    background: #12c064;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    text-transform: uppercase;
 }
 
 .errorlist {
-    color: #ef4444;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
+    color: #cc0033;
+    float: left;
+    clear: both;
+    padding-left: 10px;
 }
 
-/* Utility Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.helptext {
+    margin: 0 0 20px 0;
+    color: #aaa;
+    clear: both;
+    float: left;
+    font-size: 13px;
 }
 
-#content {
-    animation: fadeIn 0.4s ease-out;
+/* messages */
+ul.messages {
+    margin: 10px 100px;
+    padding: 0;
+    list-style-type:
+        none;
+}
+
+ul.messages li.success,
+ul.messages li.warning,
+ul.messages li.error,
+ul.messages li.info {
+    margin: 0;
+    padding: 14px 20px;
+    list-style: none;
+    color: #fff;
+}
+
+ul.messages li.success {
+    background: #81ce81;
+}
+
+ul.messages li.success a {
+    color: #0ac33e;
+}
+
+ul.messages li.error {
+    background: #a30029;
+    color: #e9828e;
+}
+
+ul.messages li.error a {
+    color: #e9828e;
+}
+
+ul.messages li.info {
+    background: #faffae;
+    color: #696b4e;
+}
+
+ul.messages li.info a {
+    color: #1586de;
+}
+
+ul.messages li.warning {
+    background: #de9404;
+}
+
+ul.messages li.warning a {
+    color: #f49000;
+}
+
+ul.messages li a.close {
+    margin: 0;
+    float: right;
+    opacity: 1;
+    border: 0;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+.login-form {
+    float: left;
+}
+
+/* social-auth */
+.social {
+    float: right;
+}
+
+.social li {
+    list-style: none;
+    padding: 10px 20px;
+    margin: 0 0 10px 0;
+}
+
+.social li a {
+    width: 100%;
+    height: 100%;
+    display: block;
+    color: #fff;
+}
+
+.social li.google {
+    background: #de1710;
+}
+
+
+/* images */
+
+.image-preview,
+.image-detail {
+    max-width: 300px;
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+.image-detail {
+    margin-top: 20px;
+}
+
+.image-info div {
+    padding: 20px 0;
+    overflow: auto;
+}
+
+.count {
+    color: #aaa;
+    border: 3px solid #bbb;
+    border-radius: 26px;
+    padding: 10px 20px;
+    margin: 20px 10px 0;
+}
+
+a.like,
+a.follow {
+    float: right;
+    margin-top: -8px;
+}
+
+#image-list {
+    overflow: hidden;
+}
+
+#image-list .image {
+    float: left;
+    width: 220px;
+    height: 300px;
+    margin: 0 10px 10px 10px;
+    border-top: 8px solid #12c064;
+    background: #eee;
+}
+
+#image-list img {
+    width: 220px;
+    height: 220px;
+}
+
+#image-list .info {
+    padding: 10px;
+}
+
+#image-list .info a {
+    color: #333;
+}
+
+.image-likes div {
+    float: left;
+    width: auto;
+    padding: 10px;
+    text-align: center;
+}
+
+.image-likes img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+/* users */
+#people-list img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+#people-list .user {
+    width: 180px;
+    float: left;
+    overflow: auto;
+    padding: 10px;
+}
+
+#people-list .info {
+    text-align: center;
+}
+
+img.user-detail {
+    border-radius: 50%;
+    float: left;
+}
+
+.profile-info {
+    float: left;
+    overflow: auto;
+    margin-right: 20px;
+}
+
+.image-container {
+    margin-top: 40px;
+}
+
+/* actions */
+.action {
+    clear: both;
+    overflow: auto;
+}
+
+.action .images {
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+.action .date {
+    font-style: italic;
+    color: #ccc;
 }
