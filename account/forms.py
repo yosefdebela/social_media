@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from .models import Profile
+from django.core.exceptions import ValidationError
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -13,6 +14,12 @@ class UserRegistrationForm(forms.ModelForm):
     class Meta:
         model= get_user_model()
         fields = ('username', 'first_name', 'email')
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        if get_user_model().objects.filter(username=username).exists():
+            raise ValidationError("Username already exists")
+        return username
 
     def clean_password2(self):
         cd = self.cleaned_data
