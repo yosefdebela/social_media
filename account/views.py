@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import LoginForm, UserRegistrationForm, UserEditForm, ProfileEditForm
 from django.contrib.auth.decorators import login_required
 from .models import Profile
+from django.contrib import messages
 
 
 def  home(request):
@@ -40,8 +41,7 @@ def register(request):
             # Create a new user object but avoid saving it yet
             new_user = user_form.save(commit=False)
             # Set the chosen password
-            new_user.set_password(
-                user_form.cleaned_data['password']
+            new_user.set_password(user_form.cleaned_data['password']
             )
             # Save the User object
             new_user.save()
@@ -59,7 +59,12 @@ def edit(request):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
-        return render(request, 'account/edit_done.html')
+            messages.success(request, 'Profile updated successfully')
+            return redirect('edit_done')
+        else:
+            messages.error(request, 'Error updating your profile')
+        # render the edit form again if POST but invalid
+        return render(request, 'account/edit.html', {'user_form': user_form, 'profile_form': profile_form})
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(instance=request.user.profile)
@@ -71,3 +76,8 @@ def edit(request):
         'profile_form': profile_form
         }
         )
+
+
+@login_required
+def edit_done(request):
+    return render(request, 'account/edit_done.html')

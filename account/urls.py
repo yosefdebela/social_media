@@ -19,5 +19,5 @@ urlpatterns = [
     path('register/', views.register, name='register'),
     path('home', views.home, name='home'),
     path('edit/', views.edit, name='edit'),
-    path('edit_done/', views.edit, name='edit_done'),
+    path('edit_done/', views.edit_done, name='edit_done'),
 ]
