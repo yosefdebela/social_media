@@ -1,3 +1,7 @@
 practice.html
 .venv/
 db.sqlite3
+.jupyter
+.ipynb_checkpoints
+untitled.ipynb
+

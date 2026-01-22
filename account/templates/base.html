@@ -36,10 +36,23 @@
             {% endif %}
         </span>
     </div>
+        <div>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message | tagsafe }}
+            </li>   
+            {% endfor %}
+        </ul>
+        {% endif %} 
+        
+    </div>
+</body>
     <div id="content">
         {% block content %}
         {% endblock %}
     </div>
-</body>
+
 
 </html>
