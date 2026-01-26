@@ -5,4 +5,4 @@ db.sqlite3
 .ipynb_checkpoints
 untitled.ipynb
 .idea
-
+.env
