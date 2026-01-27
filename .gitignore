@@ -6,3 +6,7 @@ db.sqlite3
 untitled.ipynb
 .idea
 .env
+
+# Ignore certificate files (keep only local copies)
+cert.crt
+cert.key
